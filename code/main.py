@@ -24,6 +24,10 @@ ds_i2c = I2C(1,sda=Pin(6), scl=Pin(7))
 ds = DS3231_I2C(ds_i2c)
 
 
+### SET LIGHT THRESHOLD ###
+lightThreshold = 15
+
+
 ### SET TIME ###
 # Uncomment the lines below to set time
 #current_time = b'\x00\x22\x17\x27\x17\x08\x21' # sec min hour week day month year
@@ -64,9 +68,6 @@ def readLight(photoGP):
     light = round(light/65535*100,2)
     return light
 
-### SET LIGHT THRESHOLD ###
-lightThreshold = 15
-
 
 ### GIVE SOME TIME TO ASSEMBLE BOX AND PUT IN D-VITAMIN BEFORE MAIN LOOP STARTS ###
 for i in range(0,5):
@@ -75,7 +76,7 @@ for i in range(0,5):
     setLED("off")
     utime.sleep(0.1)
 
-for i in range(0,5):
+for i in range(0,10):
     setLED("red")
     utime.sleep(1)
     setLED("off")
